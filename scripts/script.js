@@ -28,3 +28,14 @@ function operate(a, b, op)
             default: console.log("Invalid operation");
         }
     }
+let displayDiv= document.getElementById('display');
+displayDiv.innerHTML=" ";
+let buttonsDiv=document.getElementById('buttons');
+let buttonsList= buttonsDiv.querySelectorAll('button');
+buttonsList.forEach(button=>{
+    button.addEventListener("click",()=>{
+        if(button.innerHTML!="Clear")
+            displayDiv.innerHTML+= button.innerHTML;
+    })
+});
+//console.log(buttonsList);
