@@ -57,11 +57,13 @@ buttonsList.forEach(button=>{
                 userinput+=button.innerHTML;
             else if(button.innerHTML== "="){
                 //userinput+="test123456789";
-                inputArr=userinput.split(/(\d{1,})([+|\-|*|/])(\d{1,})/g);
+                //inputArr=userinput.split(/(\d{1,})([+|\-|*|/])(\d{1,})/g);
+                inputArr=userinput.split(/(\d{1,}\.*\d*)([+|\-|*|/])(\d{1,}\.*\d*)/g);
                 if(inputArr.length>=5&&inputArr[inputArr.length-1]!='')
                 {
                     
-                    endOfInput=inputArr[inputArr.length-1].split(/([+|\-|*|/])(\d{1,})/g);
+                    //endOfInput=inputArr[inputArr.length-1].split(/([+|\-|*|/])(\d{1,})/g);
+                    endOfInput=inputArr[inputArr.length-1].split(/([+|\-|*|/])(\d{1,}\.*\d*)/g)
                     endOfInput.shift();
                     inputArr.splice(inputArr.length-1,1);
                     concatArray=inputArr.concat(endOfInput);
@@ -81,7 +83,12 @@ buttonsList.forEach(button=>{
                     displayDiv.innerHTML+=result.toPrecision(3);
                 else
                     displayDiv.innerHTML+=result;
-            }}
+            }
+            if(button.innerHTML==".")
+                button.disabled=true;
+            else if(button.innerHTML=="+"||button.innerHTML=="-"||button.innerHTML=="*"||button.innerHTML=="/"||button.innerHTML=="=")
+                document.getElementById("decimal-button").disabled=false;
+            }
             else if(button.innerHTML=="Clear"){
                 clickCount=0;
                 displayDiv.innerHTML=0;
@@ -91,6 +98,6 @@ buttonsList.forEach(button=>{
             }
             console.log(userinput);
             console.log(inputArr);
-    })
+   })
 });
 //console.log(userinput);
