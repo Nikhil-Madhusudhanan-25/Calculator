@@ -8,7 +8,9 @@ function multiply(num1, num2){
     return num1*num2;
 }
 function divide(num1, num2){
-    return num1/num2;
+    if(num2!=0)
+        return num1/num2;
+    else return "You can't divide by zero, genius -_-";
 }
 let num1=0,
     num2=0,
@@ -75,7 +77,10 @@ buttonsList.forEach(button=>{
                     result=operate(result,concatArray[i+1],concatArray[i]);
                     i+=2;
                 }
-                displayDiv.innerHTML+=result.toPrecision(3);
+                if (typeof(result)=="number")
+                    displayDiv.innerHTML+=result.toPrecision(3);
+                else
+                    displayDiv.innerHTML+=result;
             }}
             else if(button.innerHTML=="Clear"){
                 clickCount=0;
