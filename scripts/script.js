@@ -70,7 +70,7 @@ buttonsList.forEach(button=>{
                     result=operate(result,concatArray[i+1],concatArray[i]);
                     i+=2;
                 }
-                displayDiv.innerHTML+=result;
+                displayDiv.innerHTML+=result.toPrecision(3);
             }}
             console.log(userinput);
             console.log(inputArr);
