@@ -13,29 +13,67 @@ function divide(num1, num2){
 let num1=0,
     num2=0,
     operator="",
-    result=0;
+    res=0,
+    result=0,
+    userinput="",
+    inputArr=[],
+    endOfInput=[],
+    concatArray=[],
+    i=0;
 function operate(a, b, op)
 {
         switch(op){
-            case '+': result=add(+a,+b);
+            case '+': res=add(+a,+b);
+            return res;
             break;
-            case '-': result=subtract(+a,+b);
+            case '-': res=subtract(+a,+b);
+            return res;
             break;
-            case '*': result=multiply(+a, +b);
+            case '*': res=multiply(+a, +b);
+            return res;
             break;
-            case '/': result=divide(+a, +b);
+            case '/': res=divide(+a, +b);
+            return res;
             break;
             default: console.log("Invalid operation");
         }
     }
 let displayDiv= document.getElementById('display');
-displayDiv.innerHTML=" ";
+displayDiv.innerHTML="";
 let buttonsDiv=document.getElementById('buttons');
 let buttonsList= buttonsDiv.querySelectorAll('button');
 buttonsList.forEach(button=>{
     button.addEventListener("click",()=>{
         if(button.innerHTML!="Clear")
-            displayDiv.innerHTML+= button.innerHTML;
+            {displayDiv.innerHTML+= button.innerHTML
+            if(button.innerHTML!= "=")
+                userinput+=button.innerHTML;
+            else if(button.innerHTML== "="){
+                //userinput+="test123456789";
+                inputArr=userinput.split(/(\d{1,})([+|\-|*|/])(\d{1,})/g);
+                if(inputArr.length>=5&&inputArr[inputArr.length-1]!='')
+                {
+                    
+                    endOfInput=inputArr[inputArr.length-1].split(/([+|\-|*|/])(\d{1,})/g);
+                    endOfInput.shift();
+                    inputArr.splice(inputArr.length-1,1);
+                    concatArray=inputArr.concat(endOfInput);
+                    console.log(concatArray);
+                    
+                }
+                else{
+                    concatArray=inputArr;
+                }
+                result=operate(concatArray[1],concatArray[3],concatArray[2]);
+                i=4;
+                while(concatArray[i]!=''){
+                    result=operate(result,concatArray[i+1],concatArray[i]);
+                    i+=2;
+                }
+                displayDiv.innerHTML+=result;
+            }}
+            console.log(userinput);
+            console.log(inputArr);
     })
 });
-//console.log(buttonsList);
+//console.log(userinput);
