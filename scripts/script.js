@@ -74,16 +74,32 @@ buttonsList.forEach(button=>{
                     else{
                         concatArray=inputArr;
                     }
-                    result=operate(concatArray[1],concatArray[3],concatArray[2]);
+                    if(concatArray.length>=5)  
+                        result=operate(concatArray[1],concatArray[3],concatArray[2]);
+                    else
+                        {//result=concatArray[0];
+                            let resultArr=userinput.split(/(\d*)/g);
+                            result=resultArr[1];
+                            if(resultArr[0]=="-")
+                                result=userinput;
+                            resultArr=[];
+                            concatArray=[];
+                            userinput="";
+                         }
                     i=4;
-                    while(concatArray[i]!=''){
+                    while(concatArray[i]!=''&&concatArray[i]!=undefined&&concatArray.length>=5){
                         result=operate(result,concatArray[i+1],concatArray[i]);
                         i+=2;
                     }
                     if (typeof(result)=="number")
                         displayDiv.innerHTML+=result.toFixed(2);
                     else
-                        displayDiv.innerHTML+=result;}
+                        {   if(result!=undefined)
+                                displayDiv.innerHTML+=result;
+                            else
+                                displayDiv.innerHTML+="Syntax Error";
+                        }
+                }
                 else{
                         displayDiv.innerHTML="0";
                     }
