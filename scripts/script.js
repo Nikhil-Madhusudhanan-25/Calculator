@@ -46,44 +46,48 @@ let buttonsDiv=document.getElementById('buttons');
 let buttonsList= buttonsDiv.querySelectorAll('button');
 buttonsList.forEach(button=>{
     button.addEventListener("click",()=>{
-        if(button.innerHTML!="Clear")
+        if(button.innerHTML!="Clear"&&button.innerHTML!="Bcksp")
             {
                 if(clickCount==0)
                 {displayDiv.innerHTML="";
                     clickCount++;
-            }
+                }
             displayDiv.innerHTML+= button.innerHTML
             if(button.innerHTML!= "=")
                 userinput+=button.innerHTML;
             else if(button.innerHTML== "="){
                 //userinput+="test123456789";
                 //inputArr=userinput.split(/(\d{1,})([+|\-|*|/])(\d{1,})/g);
-                inputArr=userinput.split(/(\d{1,}\.*\d*)([+|\-|*|/])(\d{1,}\.*\d*)/g);
-                if(inputArr.length>=5&&inputArr[inputArr.length-1]!='')
-                {
-                    
-                    //endOfInput=inputArr[inputArr.length-1].split(/([+|\-|*|/])(\d{1,})/g);
-                    endOfInput=inputArr[inputArr.length-1].split(/([+|\-|*|/])(\d{1,}\.*\d*)/g)
-                    endOfInput.shift();
-                    inputArr.splice(inputArr.length-1,1);
-                    concatArray=inputArr.concat(endOfInput);
-                    console.log(concatArray);
-                    
-                }
+                if(userinput[0]!=undefined)
+                    {inputArr=userinput.split(/(\d{1,}\.*\d*)([+|\-|*|/])(\d{1,}\.*\d*)/g);
+                    if(inputArr.length>=5&&inputArr[inputArr.length-1]!='')
+                    {
+                        
+                        //endOfInput=inputArr[inputArr.length-1].split(/([+|\-|*|/])(\d{1,})/g);
+                        endOfInput=inputArr[inputArr.length-1].split(/([+|\-|*|/])(\d{1,}\.*\d*)/g)
+                        endOfInput.shift();
+                        inputArr.splice(inputArr.length-1,1);
+                        concatArray=inputArr.concat(endOfInput);
+                        console.log(concatArray);
+                        
+                    }
+                    else{
+                        concatArray=inputArr;
+                    }
+                    result=operate(concatArray[1],concatArray[3],concatArray[2]);
+                    i=4;
+                    while(concatArray[i]!=''){
+                        result=operate(result,concatArray[i+1],concatArray[i]);
+                        i+=2;
+                    }
+                    if (typeof(result)=="number")
+                        displayDiv.innerHTML+=result.toFixed(2);
+                    else
+                        displayDiv.innerHTML+=result;}
                 else{
-                    concatArray=inputArr;
-                }
-                result=operate(concatArray[1],concatArray[3],concatArray[2]);
-                i=4;
-                while(concatArray[i]!=''){
-                    result=operate(result,concatArray[i+1],concatArray[i]);
-                    i+=2;
-                }
-                if (typeof(result)=="number")
-                    displayDiv.innerHTML+=result.toPrecision(3);
-                else
-                    displayDiv.innerHTML+=result;
-            }
+                        displayDiv.innerHTML="0";
+                    }
+        }
             if(button.innerHTML==".")
                 button.disabled=true;
             else if(button.innerHTML=="+"||button.innerHTML=="-"||button.innerHTML=="*"||button.innerHTML=="/"||button.innerHTML=="=")
@@ -98,6 +102,7 @@ buttonsList.forEach(button=>{
             }
             console.log(userinput);
             console.log(inputArr);
+            console.log("concatarraylength "+concatArray.length);
    })
 });
 //console.log(userinput);
