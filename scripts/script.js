@@ -92,13 +92,21 @@ buttonsList.forEach(button=>{
                         i+=2;
                     }
                     if (typeof(result)=="number")
-                        displayDiv.innerHTML+=result.toFixed(2);
+                        {displayDiv.innerHTML+=result.toFixed(2);
+                            userinput="";
+                            inputArr=[];
+                            concatArray=[];
+                        }
                     else
                         {   if(result!=undefined)
                                 displayDiv.innerHTML+=result;
                             else
                                 displayDiv.innerHTML+="Syntax Error";
+                            userinput="";
+                            inputArr=[];
+                            concatArray=[];
                         }
+                        displayDiv.innerHTML+="<br>";
                 }
                 else{
                         displayDiv.innerHTML="0";

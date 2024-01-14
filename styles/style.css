@@ -13,4 +13,6 @@ button{
     overflow-x:hidden;
     overflow-y:scroll;
     max-width:212px;
+    display: flex;
+    flex-direction: column-reverse;
 }
