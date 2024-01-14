@@ -127,6 +127,16 @@ buttonsList.forEach(button=>{
                 inputArr=[];
                 concatArray=[];
             }
+            else if(button.innerHTML=="Bcksp")
+            {
+                userinput=userinput.slice(0,-1);
+                //console.log("tesSTR: "+testSTR);
+                if(userinput.length>0)
+                    {displayDiv.innerHTML=userinput;
+                    console.log("userinp length: "+userinput.length);}
+                else
+                    displayDiv.innerHTML=0
+            }
             console.log(userinput);
             console.log(inputArr);
             console.log("concatarraylength "+concatArray.length);
