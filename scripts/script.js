@@ -79,7 +79,10 @@ buttonsList.forEach(button=>{
                     else
                         {//result=concatArray[0];
                             let resultArr=userinput.split(/(\d*)/g);
-                            result=resultArr[1];
+                            if(resultArr[0]!="/"&&resultArr[0]!="*")
+                                result=resultArr[1];
+                            else
+                                result="Syntax Error";
                             if(resultArr[0]=="-")
                                 result=userinput;
                             resultArr=[];
