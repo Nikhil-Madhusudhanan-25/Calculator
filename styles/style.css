@@ -48,15 +48,15 @@ button{
     display: flex;
     gap:10px;
 }
-#clear-button{
+#Delete{
     flex-grow: 1;
 }
 .op-button{
     background-color: rgb(63, 241, 9);
 }
-#clear-button{
+#Delete{
     background-color: rgb(194, 33, 33);
 }
-#backspace-button{
+#Backspace{
     background-color: rgb(236, 59, 142);
 }
