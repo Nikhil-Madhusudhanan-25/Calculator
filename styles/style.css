@@ -18,9 +18,7 @@ button{
 }
 #display{
     height:100px;
-    /*overflow-x:hidden;*/
     overflow-y:scroll;
-    /*max-width:212px;*/
     display: flex;
     flex-direction: column-reverse;
     font-weight: bold;
