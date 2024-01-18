@@ -132,7 +132,7 @@ const clickAdder=(button)=>{
                 else
                     displayDiv.innerHTML=0
             }
-            console.log(userinput);
+            console.log("inside clickadder: "+userinput);
             console.log(inputArr);
             console.log("concatarraylength "+concatArray.length);
 })
@@ -226,7 +226,7 @@ function clickAdder2(button){
                 else
                     displayDiv.innerHTML=0
             }
-            console.log(userinput);
+            console.log("inside clickadder2: "+userinput);
             console.log(inputArr);
             console.log("concatarraylength "+concatArray.length);
 
@@ -256,6 +256,7 @@ window.addEventListener("keydown",(event)=>{
         case "Enter":keyValue= document.getElementById("=");
             clickAdder2(keyValue);
             console.log(event.key+"pressed");
+            event.preventDefault();
             break;
     }
 })
